@@ -12,19 +12,20 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/usuarios")
-public class UsuarioController() {
+public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
     @GetMapping
     public List<DTOListarUsuarios> listarUsuarios() {
-        return usuarioRepository.findAll().stream().map(DTOListarUsuarios::new).toList();
+        return usuarioRepository.findAll().stream().map(usuario -> new DTOListarUsuarios(usuario.getId(), usuario.getNombre(), usuario.getEmail()))
+                .collect(Collectors.toList());
     }
 
     @PostMapping

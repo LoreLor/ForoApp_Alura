@@ -1,16 +1,18 @@
 package foro.alura.apirest.controller;
 
-import foro.alura.apirest.domain.topico.Topico;
+import foro.alura.apirest.domain.curso.Curso;
+import foro.alura.apirest.domain.topico.*;
 import foro.alura.apirest.domain.usuario.Usuario;
 import foro.alura.apirest.repository.TopicoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -47,9 +49,9 @@ public class TopicoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DTOListarTopicos>> listadoMedicos(Pageable paginacion) {
+    public ResponseEntity<Page<DTOListarTopico>> listadoMedicos(Pageable paginacion) {
         //return medicoRepository.findAll(paginacion).map(DatosListadoMedico::new);
-        return ResponseEntity.ok(topicoRepository.findByActivoTrue(paginacion).map(DTOListarTopicos::new));
+        return ResponseEntity.ok(topicoRepository.findByActivoTrue(paginacion).map(DTOListarTopico::new));
     }
 
     // GET POR ID

@@ -1,13 +1,19 @@
 package foro.alura.apirest.controller;
 
 import foro.alura.apirest.domain.curso.Curso;
+import foro.alura.apirest.domain.curso.DTOActualizarCurso;
 import foro.alura.apirest.domain.curso.DTOListarCursos;
+import foro.alura.apirest.domain.curso.DTORegistrarCurso;
+import foro.alura.apirest.repository.CursoRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/cursos")
